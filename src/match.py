@@ -1,3 +1,5 @@
+import re
+
 def fail(pattern):
     fail = [0]*len(pattern)
     fail[0] = 0
@@ -42,13 +44,13 @@ def bmMatch(pattern, text):
     i = len(pattern)-1
     j = len(pattern)-1
     if(i>len(text)-1):
-        return -1
+        return -1,-1
     else:
         j = len(pattern)-1
         while(i<=len(text)-1):
             if(pattern[j]==text[i]):
                 if(j==0):
-                    return i
+                    return i,i+len(pattern)-1
                 else:
                     i-=1
                     j-=1
@@ -56,7 +58,7 @@ def bmMatch(pattern, text):
                 lastOc = last[ord(text[i])]
                 i = i + len(pattern) - min(j, 1+lastOc)
                 j = len(pattern)-1
-        return -1
+        return -1,-1
 
 def regexMatch(pattern, text):
     hasil = re.findall(pattern, text)

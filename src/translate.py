@@ -32,17 +32,24 @@ def clearPenekanan(masukan):
             masukan.remove(i)
     return masukan
 
-# Menambahkan stop words
-def addPenekanan(hasil, result):
-    pilihan = ['teh', 'mah','']
-    if(result == 'itu' or result == 'tuh'):
-        hasil += 'teh '
-    elif(result == 'saya' or result == 'kamu' or result == 'dia'):
-        pil = random.choice(pilihan)
-        hasil += pil + " "
+def addPenekanan(hasil, result, trans):
+    teh = ['itu', 'tuh', 'saya', 'kamu', 'dia', 'mereka', 'kalian', 'kami', 'kita']
+    if(result in teh):
+        hasil.append('teh')
     elif(result == 'dong'):
-        hasil += 'atuh '
+        hasil.append('atuh')
+    elif(result == 'apa', 'dimana', 'kapan'):
+        temp = hasil[0:-1]
+        temp.append('teh')
+        hasil = temp[0:None]
+        hasil.append(trans)
     return hasil
+
+def concateHasil(hasil):
+    fin = ""
+    for i in range(len(hasil)):
+        fin += hasil[i] + ' '
+    return fin
 
 # Metode pattern matching
 def matchAlgo(choice, masukan, text):
@@ -59,7 +66,7 @@ def sundaToIndo(choice, masukan):
     readSundaToIndo() # Membaca kamus
     parsed = parsingSentence(masukan) # Parsing kalimat
     result = clearPenekanan(parsed) # Menghapus stop words
-    hasil = ""
+    hasil = []
     for i in range(len(result)):
         found = False
         j = 0
@@ -70,18 +77,18 @@ def sundaToIndo(choice, masukan):
             last = res[1]
             if(start == 0 and last == len(sunda[j][0])-1): # Jika ditemukan exact match
                 found = True
-                hasil += sunda[j][1] + " "
+                hasil.append(sunda[j][1])
             j += 1
         if(not found): # Jika tidak ditemukan, kata tersebut dituliskan apa adanya
-            hasil += result[i] + " "
-    return hasil
+            hasil.append(result[i])
+    return concateHasil(hasil)
 
 # Translate Indonesia ke Sunda
 def indoToSunda(choice, masukan):
-    needStopWords = ['saya', 'kamu', 'dia', 'dong', 'itu', 'tuh']
+    needStopWords = ['saya', 'kamu', 'dia', 'mereka', 'kalian', 'kami', 'kita', 'dong', 'itu', 'tuh', 'apa', 'dimana', 'kapan']
     readIndoToSunda() # Membaca kamus
     result = parsingSentence(masukan) # Parsing kalimat
-    hasil = ""
+    hasil = []
     for i in range(len(result)):
         found = False
         penekanan = False
@@ -93,12 +100,13 @@ def indoToSunda(choice, masukan):
             last = res[1]
             if(start == 0 and last == len(indonesia[j][0])-1): # Jika ditemukan exact match
                 found = True
-                hasil += indonesia[j][1] + " "
+                hasil.append(indonesia[j][1])
+                trans = indonesia[j][1]
             j += 1
         
         if(not penekanan and result[i] in needStopWords): # Jika kata membutuhkan penekanan
             penekanan = True
-            hasil = addPenekanan(hasil, result[i])
+            hasil = addPenekanan(hasil, result[i], trans)
         elif(not found and not penekanan): # Jika kata tidak ditemukan dan tidak membutuhkan penekanan
-            hasil += result[i] + " "
-    return hasil
+            hasil.append(result[i])
+    return concateHasil(hasil)
