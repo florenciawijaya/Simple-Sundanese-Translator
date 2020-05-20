@@ -32,12 +32,14 @@ def clearPenekanan(masukan):
             masukan.remove(i)
     return masukan
 
+# Menambah penekanan
 def addPenekanan(hasil, result, trans):
     teh = ['itu', 'tuh', 'saya', 'kamu', 'dia', 'mereka', 'kalian', 'kami', 'kita']
     if(result in teh):
         hasil.append('teh')
     elif(result == 'dong'):
         hasil.append('atuh')
+    # Menambah 'teh' di sebelah kiri
     elif(result == 'apa', 'dimana', 'kapan'):
         temp = hasil[0:-1]
         temp.append('teh')
