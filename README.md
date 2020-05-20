@@ -62,7 +62,4 @@ pip install flask
 4. Klik 'Terjemahkan'
 
 ## Link
-Video demo untuk translator ini dapat dilihat di:
-```
-https://youtu.be/ktl_E1t2PYY
-```
+Video demo untuk translator ini dapat dilihat di https://youtu.be/ktl_E1t2PYY
