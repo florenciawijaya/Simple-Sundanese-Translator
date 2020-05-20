@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Simple Sundanese Translator</title>
+        <meta charset="UTF-8">
+    </head>
+    <body>
+        <h1 align="center">Simple Sundanese Translator</h1>
+        <center>
+        {% if met %}
+            <b>DENGAN METODE {{met}}</b>
+            <br><br>
+        {% endif %}
+
+        {% if input %}
+            Kalimat : {{input}}
+            <br>
+        {% endif %}
+
+        {% if hsl %}
+            Terjemahan : {{hsl}}
+        {% endif %}
+        </center>
+    </body>
+</html>

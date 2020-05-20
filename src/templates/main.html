@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Simple Sundanese Translator</title>
+        <meta charset="UTF-8">
+    </head>
+    <body>
+        <h1 align="center">Simple Sundanese Translator</h1>
+
+        <center>
+        <form action="/output" method="post" enctype="multipart/form-data">
+        <p>Terjemahkan dari: </p>
+        <input type="radio" id="jenis1" name="jenis" value="ITS">
+        <label for="jenis1">Indonesia ke Sunda</label>
+        <br>
+        <input type="radio" id="jenis2" name="jenis" value="STI">
+        <label for="jenis2">Sunda ke Indonesia</label>
+
+        <p>Metode Pattern Matching: </p>
+        <input type="radio" id="metode1" name="metode" value="KMP">
+        <label for="metode1">KMP</label>
+        <input type="radio" id="metode2" name="metode" value="KMP">
+        <label for="metode2">Boyer-Moore</label>
+        <input type="radio" id="metode3" name="metode" value="KMP">
+        <label for="metode3">Regex</label>
+        <br><br>
+
+        <label for="sentence">Kalimat : </label>
+        <br>
+        <input type="text" id="sentence" name="sentence"><br><br>
+
+        <input type="submit" value="Submit">
+        <br><br>
+        </form>
+        </center>
+    </body>
+</html>
