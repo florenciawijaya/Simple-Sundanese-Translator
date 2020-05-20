@@ -34,11 +34,9 @@ def clearPenekanan(masukan):
 
 # Menambah penekanan
 def addPenekanan(hasil, result, trans):
-    teh = ['itu', 'tuh', 'saya', 'kamu', 'dia', 'mereka', 'kalian', 'kami', 'kita']
+    teh = ['saya', 'kamu', 'dia', 'mereka', 'kalian', 'kami', 'kita']
     if(result in teh):
         hasil.append('teh')
-    elif(result == 'dong'):
-        hasil.append('atuh')
     # Menambah 'teh' di sebelah kiri
     elif(result == 'apa', 'dimana', 'kapan'):
         temp = hasil[0:-1]
@@ -87,7 +85,7 @@ def sundaToIndo(choice, masukan):
 
 # Translate Indonesia ke Sunda
 def indoToSunda(choice, masukan):
-    needStopWords = ['saya', 'kamu', 'dia', 'mereka', 'kalian', 'kami', 'kita', 'dong', 'itu', 'tuh', 'apa', 'dimana', 'kapan']
+    needStopWords = ['saya', 'kamu', 'dia', 'mereka', 'kalian', 'kami', 'kita', 'apa', 'dimana', 'kapan']
     readIndoToSunda() # Membaca kamus
     result = parsingSentence(masukan) # Parsing kalimat
     hasil = []
@@ -105,6 +103,8 @@ def indoToSunda(choice, masukan):
                 hasil.append(indonesia[j][1])
                 trans = indonesia[j][1]
             j += 1
+        if(not found):
+            trans = ""
         
         if(not penekanan and result[i] in needStopWords): # Jika kata membutuhkan penekanan
             penekanan = True
