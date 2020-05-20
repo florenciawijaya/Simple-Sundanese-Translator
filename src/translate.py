@@ -53,12 +53,16 @@ def concateHasil(hasil):
 
 # Metode pattern matching
 def matchAlgo(choice, masukan, text):
+    punctuation = ['.', ',', '?', '!', ':', ';']
     if(choice == "KMP"):
         idx = kmpMatch(masukan.lower(), text)
     elif(choice == "BM"):
         idx = bmMatch(masukan.lower(), text)
     elif(choice == "Regex"):
-        idx = regexMatch(masukan.lower(), text)
+        if(masukan in punctuation):
+            idx = -1,-1
+        else:
+            idx = regexMatch(masukan.lower(), text)
     return idx
 
 # Translate Sunda ke Indonesia

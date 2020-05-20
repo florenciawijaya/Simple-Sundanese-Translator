@@ -60,3 +60,9 @@ pip install flask
 2. Pilih metode pattern matching yang diinginkan: KMP, Boyer-Moore, atau Regex
 3. Masukkan kalimat yang ingin diterjemahkan
 4. Klik 'Terjemahkan'
+
+## Link
+Video demo untuk translator ini dapat dilihat di:
+```
+https://youtu.be/ktl_E1t2PYY
+```
